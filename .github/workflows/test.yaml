@@ -3,6 +3,8 @@ name: Test
 on:
   repository_dispatch:
     types: [test-1, test-2]
+  pull_request:
+    types: [ready_for_review]
 
 jobs:
   test:
@@ -11,4 +13,5 @@ jobs:
     steps:
       - name: Echo test
         run: |
-          echo ${{ github.event }}
+          echo Action: ${{ github.event.action }}
+          echo Event type ${{ github.event.event_type }}
